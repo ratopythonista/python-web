@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python_web"
+version = "0.1.0"
+authors = [
+  { name="Rodrigo Guimarães", email="ratopythonista@gmail.com" },
+]
+dependencies = [
+  "dash==2.12.1",
+  "loguru==0.7.0"
+]
+description = "Python Web Sample with Dash By Plotly"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU GENERAL PUBLIC LICENSE",
+    "Operating System :: OS Independent",
+]
