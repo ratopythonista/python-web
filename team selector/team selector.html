@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<style>
+	body {
+		color: white;
+		font-family: helvetica;
+	}
+</style>
+
+<head>
+	<title>SG Team Selector</title>
+</head>
+
+<body style="background-color:#18181b;">
+
+	<img src="portraits/SG_mar_select.png" id="mar" style="display:none;" alt="SG_marie">
+	<img src="portraits/SG_squ_select.jpg" id="squ" style="display:none;" alt="SG_squigly">
+	<img src="portraits/SG_big_select.jpg" id="big" style="display:none;" alt="SG_bigband">
+	<img src="portraits/SG_eli_select.jpg" id="eli" style="display:none;" alt="SG_eliza">
+	<img src="portraits/SG_msf_select.jpg" id="msf" style="display:none;" alt="SG_fortune">
+	<img src="portraits/SG_pea_select.jpg" id="pea" style="display:none;" alt="SG_peacock">
+	<img src="portraits/SG_pwl_select.jpg" id="pwl" style="display:none;" alt="SG_painwheel">
+	<img src="portraits/SG_fil_select.jpg" id="fil" style="display:none;" alt="SG_filia">
+	<img src="portraits/SG_cer_select.jpg" id="cer" style="display:none;" alt="SG_cerebella">
+	<img src="portraits/SG_val_select.jpg" id="val" style="display:none;" alt="SG_valentine">
+	<img src="portraits/SG_par_select.jpg" id="par" style="display:none;" alt="SG_parasoul">
+	<img src="portraits/SG_dbl_select.jpg" id="dbl" style="display:none;" alt="SG_double">
+	<img src="portraits/SG_fuk_select.jpg" id="fuk" style="display:none;" alt="SG_fukua">
+	<img src="portraits/SG_beo_select.jpg" id="beo" style="display:none;" alt="SG_beowulf">
+	<img src="portraits/SG_rfo_select.jpg" id="rfo" style="display:none;" alt="SG_robo_fortune">
+	<img src="portraits/SG_umb_select.jpg" id="umb" style="display:none;" alt="SG_umbrella">
+	<img src="portraits/SG_ann_select.jpg" id="ann" style="display:none;" alt="SG_annie">
+	<img src="portraits/SG_dhl_select.jpg" id="dhl" style="display:none;" alt="SG_black_dahlia">
+
+	<h1>SG Team Builder</h1>
+
+	<p>Choose the team you want to create</p>
+
+	<form id="form" onchange=changeTeam()>
+		<label for="char1">Character 1:</label>
+		<select id="char1">
+			<option value="marie">Marie</option>
+			<option value="squigly">Squigly</option>
+			<option value="bigband">Big Band</option>
+			<option value="eliza">Eliza</option>
+			<option value="fortune">Ms. Fortune</option>
+			<option value="peacock">Peacock</option>
+			<option value="painwheel">Painwheel</option>
+			<option value="filia">Filia</option>
+			<option value="bella">Cerebella</option>
+			<option value="valentine">Valentine</option>
+			<option value="parasoul">Parasoul</option>
+			<option value="double">Double</option>
+			<option value="fukua">Fukua</option>
+			<option value="beowulf">Beowulf</option>
+			<option value="robo">Robo Fortune</option>
+			<option value="umbrella">Umbrella</option>
+			<option value="annie">Annie</option>
+			<option value="dahlia">Black Dahlia</option>
+		</select>
+		<br><br>
+		<label for="char2">Character 2:</label>
+		<select id="char2">
+			<option value="empty">---</option>
+			<option value="marie">Marie</option>
+			<option value="squigly">Squigly</option>
+			<option value="bigband">Big Band</option>
+			<option value="eliza">Eliza</option>
+			<option value="fortune">Ms. Fortune</option>
+			<option value="peacock">Peacock</option>
+			<option value="painwheel">Painwheel</option>
+			<option value="filia">Filia</option>
+			<option value="bella">Cerebella</option>
+			<option value="valentine">Valentine</option>
+			<option value="parasoul">Parasoul</option>
+			<option value="double">Double</option>
+			<option value="fukua">Fukua</option>
+			<option value="beowulf">Beowulf</option>
+			<option value="robo">Robo Fortune</option>
+			<option value="umbrella">Umbrella</option>
+			<option value="annie">Annie</option>
+			<option value="dahlia">Black Dahlia</option>
+		</select>
+		<br><br>
+		<label for="char3">Character 3:</label>
+		<select id="char3">
+			<option value="empty">---</option>
+			<option value="marie">Marie</option>
+			<option value="squigly">Squigly</option>
+			<option value="bigband">Big Band</option>
+			<option value="eliza">Eliza</option>
+			<option value="fortune">Ms. Fortune</option>
+			<option value="peacock">Peacock</option>
+			<option value="painwheel">Painwheel</option>
+			<option value="filia">Filia</option>
+			<option value="bella">Cerebella</option>
+			<option value="valentine">Valentine</option>
+			<option value="parasoul">Parasoul</option>
+			<option value="double">Double</option>
+			<option value="fukua">Fukua</option>
+			<option value="beowulf">Beowulf</option>
+			<option value="robo">Robo Fortune</option>
+			<option value="umbrella">Umbrella</option>
+			<option value="annie">Annie</option>
+			<option value="dahlia">Black Dahlia</option>
+		</select>
+	</form>
+	<br>
+	<canvas id="myTeam" width="164" height="100"></canvas>
+	<br><br>
+	<button onclick=download()>Download</button>
+	<br>
+</body>
+
+<script>
+	window.onload = function () {
+		var canvas = document.getElementById("myTeam");
+		var ctx = canvas.getContext("2d");
+		var img1 = document.getElementById("mar");
+		ctx.drawImage(img1, 0, 0);
+	}
+
+	function changeTeam() {
+		char1 = document.getElementById("char1").value;
+		char2 = document.getElementById("char2").value;
+		char3 = document.getElementById("char3").value;
+
+		if (char3 == "empty") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			ctx.clearRect(96, 30, 68, 70);
+		}
+		else if (char3 == "marie") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("mar");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "squigly") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("squ");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "bigband") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("big");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "eliza") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("eli");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "fortune") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("msf");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "peacock") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("pea");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "painwheel") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("pwl");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "filia") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("fil");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "bella") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("cer");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "valentine") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("val");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "parasoul") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("par");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "double") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("dbl");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "fukua") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("fuk");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "beowulf") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("beo");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "robo") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("rfo");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "umbrella") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("umb");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "annie") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("ann");
+			ctx.drawImage(img3, 96, 30);
+		}
+		else if (char3 == "dahlia") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img3 = document.getElementById("dhl");
+			ctx.drawImage(img3, 96, 30);
+		}
+
+		if (char2 == "empty") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			ctx.clearRect(48, 15, 68, 70);
+			ctx.clearRect(96, 30, 68, 70);
+			const $select = document.querySelector('#char3');
+			$select.value = 'empty'
+		}
+		else if (char2 == "marie") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("mar");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "squigly") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("squ");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "bigband") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("big");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "eliza") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("eli");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "fortune") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("msf");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "peacock") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("pea");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "painwheel") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("pwl");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "filia") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("fil");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "bella") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("cer");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "valentine") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("val");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "parasoul") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("par");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "double") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("dbl");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "fukua") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("fuk");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "beowulf") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("beo");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "robo") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("rfo");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "umbrella") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("umb");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "annie") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("ann");
+			ctx.drawImage(img2, 48, 15);
+		}
+		else if (char2 == "dahlia") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img2 = document.getElementById("dhl");
+			ctx.drawImage(img2, 48, 15);
+		}
+		if (char1 == "marie") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("mar");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "squigly") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("squ");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "bigband") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("big");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "eliza") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("eli");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "fortune") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("msf");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "peacock") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("pea");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "painwheel") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("pwl");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "filia") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("fil");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "bella") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("cer");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "valentine") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("val");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "parasoul") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("par");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "double") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("dbl");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "fukua") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("fuk");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "beowulf") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("beo");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "robo") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("rfo");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "umbrella") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("umb");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "annie") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("ann");
+			ctx.drawImage(img1, 0, 0);
+		}
+		else if (char1 == "dahlia") {
+			var canvas = document.getElementById("myTeam");
+			var ctx = canvas.getContext("2d");
+			var img1 = document.getElementById("dhl");
+			ctx.drawImage(img1, 0, 0);
+		}
+	}
+
+	function download() {
+		var canvasdownload = document.getElementById("myTeam");
+		image = canvasdownload.toDataURL("image/png").replace("image/png", "image/octet-stream");
+		var link = document.createElement('a');
+		link.download = "myteam.png";
+		link.href = image;
+		link.click();
+	}
+</script>
+
+
+</html>

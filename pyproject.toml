@@ -10,7 +10,9 @@ authors = [
 ]
 dependencies = [
   "dash==2.12.1",
-  "loguru==0.7.0"
+  "loguru==0.7.0",
+  "pandas==2.0.3",
+  "Pillow==10.0.0"
 ]
 description = "Python Web Sample with Dash By Plotly"
 readme = "README.md"
